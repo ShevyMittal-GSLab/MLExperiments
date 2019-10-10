@@ -9,7 +9,8 @@ import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
-import xgboost as xgb 
+import xgboost as xgb
+from pyspark.sql import SparkSession 
 import mlflow
 import mlflow.sklearn
 import mlflow.models
@@ -19,7 +20,8 @@ def eval_metrics(actual, pred):
 	mae = mean_absolute_error(actual, pred)
 	r2 = r2_score(actual, pred)
 	return rmse, mae, r2 
-df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
+spark = SparkSession.builder.config('spark.sql.catalogImplementation','hive').getOrCreate()
+	df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
 target = "Price"
 df['Price'] = pd.to_numeric(df['Price'],errors='coerce')
 df['Review_Scores_Rating5'] = pd.to_numeric(df['Review_Scores_Rating5'],errors='coerce')
