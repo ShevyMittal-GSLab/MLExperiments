@@ -21,7 +21,7 @@ def eval_metrics(actual, pred):
 	r2 = r2_score(actual, pred)
 	return rmse, mae, r2 
 spark = SparkSession.builder.config('spark.sql.catalogImplementation','hive').getOrCreate()
-	df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
+df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
 target = "Price"
 df['Price'] = pd.to_numeric(df['Price'],errors='coerce')
 df['Review_Scores_Rating5'] = pd.to_numeric(df['Review_Scores_Rating5'],errors='coerce')
