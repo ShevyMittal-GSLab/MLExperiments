@@ -5,3 +5,6 @@ entry_points:
     command: /usr/bin/spark-submit Airbnb_Regression.py
   New_exp:
     command: /usr/bin/spark-submit New_exp.py
+
+  New_Experi12:
+    command: "/usr/bin/spark-submit New_Experi12.py"
