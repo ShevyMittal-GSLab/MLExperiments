@@ -21,7 +21,7 @@ def eval_metrics(actual, pred):
 	r2 = r2_score(actual, pred)
 	return rmse, mae, r2 
 spark = SparkSession.builder.config('spark.sql.catalogImplementation','hive').getOrCreate()
-	df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
+df = spark.sql('select * from knime_datasets.brooklyn_manhattan').toPandas() 
 target = "Price"
 df['Price'] = pd.to_numeric(df['Price'],errors='coerce')
 df['Review_Scores_Rating5'] = pd.to_numeric(df['Review_Scores_Rating5'],errors='coerce')
@@ -92,7 +92,7 @@ with mlflow.start_run():
 	mlflow.log_metric("mae", mae)
 	
 	mlflow.log_artifact("target_count_plot.png")
-	mlflow.set_tag("mlflow.runName", "Run_2019-10-10_12-33-35")
+	mlflow.set_tag("mlflow.runName", "Run_2019-10-11_13-35-24")
 	mlflow.set_tag("Dataset", "brooklyn_manhattan")
 	mlflow.set_tag("Target", "Price")	
 	mlflow.set_tag("Feature Columns", "Review_Scores_Rating5,Review_Scores_Rating12")
