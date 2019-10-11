@@ -1,7 +1,7 @@
-"name: tutorial
+name: tutorial
 
 entry_points:
   Airbnb_Regression:
     command: /usr/bin/spark-submit Airbnb_Regression.py
   New_exp:
-    command: /usr/bin/spark-submit New_exp.py"
+    command: /usr/bin/spark-submit New_exp.py
